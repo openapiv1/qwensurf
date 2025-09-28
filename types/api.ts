@@ -1,10 +1,12 @@
-export type ComputerModel = "qwen" | "anthropic" | "openai" | "gemini";
+export type ComputerModel = "gemini" | "openai";
 
 export enum SSEEventType {
   SANDBOX_CREATED = "sandbox_created",
   MESSAGE = "message",
   ACTION = "action",
   ACTION_RESULT = "action_result",
+  ACTION_COMPLETED = "action_completed",
+  UPDATE = "update",
   ERROR = "error",
   DONE = "done",
 }
