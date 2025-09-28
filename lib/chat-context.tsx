@@ -137,15 +137,6 @@ export function ChatProvider({ children }: ChatProviderProps) {
       const reader = response.body?.getReader();
       if (!reader) throw new Error("Response body is null");
 
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "system",
-          id: `system-message-${Date.now()}`,
-          content: "Task started",
-        },
-      ]);
-
       const decoder = new TextDecoder();
       let assistantMessage = "";
       let buffer = "";
@@ -257,6 +248,7 @@ export function ChatProvider({ children }: ChatProviderProps) {
                   parsedEvent.vncUrl
                 );
               }
+              setIsLoading(false);
               break;
 
             case SSEEventType.ACTION_COMPLETED:

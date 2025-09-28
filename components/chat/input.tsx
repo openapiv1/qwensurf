@@ -39,7 +39,7 @@ export function ChatInput({
   isLoading,
   onStop,
   disabled = false,
-  placeholder = "What are we surfing today?",
+  placeholder = "Co dzisiaj surfujemy?",
   className,
 }: ChatInputProps) {
   const { model, setModel } = useChat();

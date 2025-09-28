@@ -103,6 +103,7 @@ export default function Home() {
   const onSubmit = (e: React.FormEvent) => {
     const content = handleSubmit(e);
     if (content) {
+      setIsLoading(true);
       const width =
         iFrameWrapperRef.current?.clientWidth ||
         (window.innerWidth < 768 ? window.innerWidth - 32 : 1024);
@@ -122,6 +123,7 @@ export default function Home() {
   };
 
   const handleExampleClick = (prompt: string) => {
+    setIsLoading(true);
     const width =
       iFrameWrapperRef.current?.clientWidth ||
       (window.innerWidth < 768 ? window.innerWidth - 32 : 1024);
@@ -362,11 +364,11 @@ export default function Home() {
             ref={iFrameWrapperRef}
             className="relative w-full md:flex-1 h-[40vh] md:h-auto overflow-hidden"
           >
-            {isLoading || (chatLoading && !sandboxId) ? (
+            {(isLoading || chatLoading) && !sandboxId ? (
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
                 <div className="flex items-center gap-3">
                   <h2 className="text-xl font-light text-accent">
-                    {isLoading ? "Starting instance" : "Creating sandbox..."}
+                    {isLoading ? "Uruchamianie instancji" : "Tworzenie sandboxa..."}
                   </h2>
                   <Loader variant="square" className="text-accent" />
                 </div>
@@ -381,8 +383,8 @@ export default function Home() {
 
                 <p className="text-sm text-fg-500 mt-4">
                   {isLoading
-                    ? "Preparing your sandbox environment..."
-                    : "Creating a new sandbox for your request..."}
+                    ? "Przygotowywanie środowiska sandbox..."
+                    : "Tworzenie nowego sandboxa dla Twojego zapytania..."}
                 </p>
               </div>
             ) : sandboxId && vncUrl ? (
@@ -396,9 +398,9 @@ export default function Home() {
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
                 <Surfing className="text-[7px] leading-[7px] text-accent font-bold" />
                 <h1 className="text-center text-fg-300 max-w-xs">
-                  <span className="text-fg">Type</span> a message or{" "}
-                  <span className="text-fg">select</span> an example prompt to
-                  start a new{" "}
+                  <span className="text-fg">Napisz</span> wiadomość lub{" "}
+                  <span className="text-fg">wybierz</span> przykładowy prompt, aby
+                  uruchomić nowy{" "}
                   <a
                     href="https://github.com/e2b-dev/desktop"
                     className="underline inline-flex items-center gap-1 decoration-accent decoration-1 underline-offset-2 text-accent"

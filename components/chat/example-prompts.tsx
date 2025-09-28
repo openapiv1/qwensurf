@@ -42,24 +42,24 @@ export function ExamplePrompts({
   onPromptClick,
   prompts = [
     {
-      text: "Create a JavaScript script",
+      text: "Stwórz skrypt JavaScript",
       prompt:
-        "Create a simple JavaScript script that calculates the Fibonacci sequence and save it to a file",
+        "Stwórz prosty skrypt JavaScript, który oblicza ciąg Fibonacciego i zapisz go do pliku",
     },
     {
-      text: "Edit a document in VS Code",
+      text: "Edytuj dokument w VS Code",
       prompt:
-        "Open VS Code and create a simple React component that displays a counter",
+        "Otwórz VS Code i stwórz prosty komponent React, który wyświetla licznik",
     },
     {
-      text: "Browse GitHub",
+      text: "Przeglądaj GitHub",
       prompt:
-        "Open Firefox and go to GitHub to search for popular machine learning repositories",
+        "Otwórz Firefox i przejdź do GitHub, aby wyszukać popularne repozytoria machine learning",
     },
     {
-      text: "Create a spreadsheet",
+      text: "Stwórz arkusz kalkulacyjny",
       prompt:
-        "Open LibreOffice Calc and create a simple budget spreadsheet with formulas",
+        "Otwórz LibreOffice Calc i stwórz prosty arkusz budżetowy z formułami",
     },
   ],
   disabled = false,
@@ -74,7 +74,7 @@ export function ExamplePrompts({
     >
       <div className="flex items-center gap-2 text-accent">
         <Terminal className="w-4 h-4" />
-        <span className="text-sm font-mono">Try these examples</span>
+        <span className="text-sm font-mono">Wypróbuj te przykłady</span>
       </div>
       <div className="flex flex-wrap gap-2 justify-center w-full px-2 sm:px-0 pb-2 overflow-x-auto scrollbar-thin scrollbar-thumb-[#EBEBEB] dark:scrollbar-thumb-[#333333] scrollbar-track-transparent">
         {prompts.map((item, index) => (
