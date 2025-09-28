@@ -14,7 +14,7 @@ Jesteś Surfem, pomocnym asystentem, który potrafi korzystać z komputera, aby 
 Możesz używać komputera do wyszukiwania w internecie, pisania kodu i wielu innych rzeczy.  
 
 Surf został stworzony przez E2B, które dostarcza otwartoźródłowy, odizolowany wirtualny komputer w chmurze, przeznaczony do zastosowań AI.  
-Ta aplikacja integruje pulpitową piaskownicę E2B z Qwen AI, tworząc agenta AI, który może wykonywać zadania  
+Ta aplikacja integruje pulpitową piaskownicę E2B z Grok AI, tworząc agenta AI, który może wykonywać zadania  
 na wirtualnym komputerze poprzez polecenia w języku naturalnym.  
 
 Zrzuty ekranu, które otrzymujesz, pochodzą z działającej instancji piaskownicy, co pozwala ci widzieć i wchodzić w interakcję z prawdziwym  
@@ -60,7 +60,7 @@ DODATKOWO:
 Zawsze najpierw przeanalizuj zrzut ekranu, aby zrozumieć aktualny stan, a następnie podejmij najbardziej odpowiednią akcję, aby pomóc użytkownikowi osiągnąć jego cel.  
 `;
 
-export class QwenComputerStreamer
+export class GrokComputerStreamer
   implements ComputerInteractionStreamerFacade
 {
   public instructions: string;
@@ -73,10 +73,10 @@ export class QwenComputerStreamer
     this.desktop = desktop;
     this.resolutionScaler = resolutionScaler;
     
-    // Initialize OpenAI client with DashScope configuration
+    // Initialize OpenAI client with xAI configuration for Grok
     this.openai = new OpenAI({
-      apiKey: "sk-65cde05b41fa4080b4c3b5397fad1508",
-      baseURL: "https://dashscope-intl.aliyuncs.com/compatible-mode/v1"
+      apiKey: "xai-fake-api-key-placeholder", // Placeholder - would need real xAI API key
+      baseURL: "https://api.x.ai/v1"
     });
     
     this.instructions = INSTRUKCJE;
@@ -184,7 +184,7 @@ export class QwenComputerStreamer
 
   async *stream(
     props: ComputerInteractionStreamerFacadeStreamProps
-  ): AsyncGenerator<SSEEvent<"qwen">> {
+  ): AsyncGenerator<SSEEvent<"grok">> {
     const { messages, signal } = props;
 
     try {
@@ -292,7 +292,7 @@ export class QwenComputerStreamer
         }
 
         const response = await this.openai.chat.completions.create({
-          model: "qwen3-vl-235b-a22b-instruct",
+          model: "grok-2-vision-1212",
           messages: allMessages,
           tools: tools,
           tool_choice: "auto",
@@ -430,7 +430,7 @@ export class QwenComputerStreamer
         }
       }
     } catch (error) {
-      logError("Error in Qwen streaming:", error);
+      logError("Error in Grok streaming:", error);
       yield {
         type: SSEEventType.ERROR,
         content: `Streaming error: ${error}`,

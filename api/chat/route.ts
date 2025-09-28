@@ -6,7 +6,7 @@ import {
 } from "@/lib/streaming";
 import { SANDBOX_TIMEOUT_MS } from "@/lib/config";
 import { OpenAIComputerStreamer } from "@/lib/streaming/openai";
-import { QwenComputerStreamer } from "@/lib/streaming/qwen";
+import { GrokComputerStreamer } from "@/lib/streaming/grok";
 import { logError } from "@/lib/logger";
 import { ResolutionScaler } from "@/lib/streaming/resolution";
 
@@ -21,11 +21,8 @@ class StreamerFactory {
     const resolutionScaler = new ResolutionScaler(desktop, resolution);
 
     switch (model) {
-      case "qwen":
-        return new QwenComputerStreamer(desktop, resolutionScaler);
-      case "anthropic":
-      // currently not implemented
-      /* return new AnthropicComputerStreamer(desktop, resolutionScaler); */
+      case "grok":
+        return new GrokComputerStreamer(desktop, resolutionScaler);
       case "openai":
       default:
         return new OpenAIComputerStreamer(desktop, resolutionScaler);
@@ -45,10 +42,10 @@ export async function POST(request: Request) {
     messages,
     sandboxId,
     resolution,
-    model = "qwen",
+    model = "grok",
   } = await request.json();
 
-  const apiKey = process.env.E2B_API_KEY;
+  const apiKey = "e2b_6f718fcb928ee85abfe16b28ebecc6724d704727";
 
   if (!apiKey) {
     return new Response("E2B API key not found", { status: 500 });

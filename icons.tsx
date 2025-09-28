@@ -189,7 +189,7 @@ export const InvoiceIcon = ({ size = 16 }: { size: number }) => {
   );
 };
 
-export const QwenLogo = ({
+export const GrokLogo = ({
   size = 16,
   className,
 }: {
@@ -204,37 +204,9 @@ export const QwenLogo = ({
       fill="currentColor"
       className={className}
     >
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+      <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"/>
     </svg>
   );
 };
 
-export const AnthropicLogo = ({
-  size = 16,
-  className,
-}: {
-  size?: number;
-  className?: string;
-}) => {
-  return (
-    <svg
-      width={size}
-      height={size}
-      version="1.1"
-      id="Layer_1"
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-      x="0px"
-      y="0px"
-      viewBox="0 0 92.2 65"
-      className={className}
-    >
-      <style>{`.st0{fill:currentColor;}`}</style>
-      <path
-        className="st0"
-        d="M66.5,0H52.4l25.7,65h14.1L66.5,0z M25.7,0L0,65h14.4l5.3-13.6h26.9L51.8,65h14.4L40.5,0C40.5,0,25.7,0,25.7,0z
-        M24.3,39.3l8.8-22.8l8.8,22.8H24.3z"
-      />
-    </svg>
-  );
-};
+

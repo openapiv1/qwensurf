@@ -15,7 +15,7 @@ import {
 } from "../ui/select";
 import { useChat } from "@/lib/chat-context";
 import { Input } from "../ui/input";
-import { AnthropicLogo } from "../icons";
+import { GrokLogo } from "../icons";
 import { motion } from "motion/react";
 
 interface ChatInputProps {
@@ -59,14 +59,14 @@ export function ChatInput({
               {model == "openai" ? (
                 <OpenAiLogo className="size-5" />
               ) : (
-                <AnthropicLogo className="size-5" />
+                <GrokLogo className="size-5" />
               )}
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>Model</SelectLabel>
                 <SelectItem value="openai">OpenAI</SelectItem>
-                <SelectItem value="anthropic">Anthropic</SelectItem>
+                <SelectItem value="grok">Grok</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select> */}
