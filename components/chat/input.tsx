@@ -2,7 +2,7 @@
 
 import React, { useMemo } from "react";
 import { OpenAiLogo } from "@phosphor-icons/react";
-import { ChevronsRight, StopCircle } from "lucide-react";
+import { ChevronsRight, CircleStop as StopCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import {

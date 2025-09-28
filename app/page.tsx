@@ -1,15 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import {
-  MoonIcon,
-  SunIcon,
-  Timer,
-  Power,
-  Menu,
-  X,
-  ArrowUpRight,
-} from "lucide-react";
+import { Moon as MoonIcon, Sun as SunIcon, Timer, Power, Menu, X, ArrowUpRight } from "lucide-react";
 import { useTheme } from "next-themes";
 import { toast } from "sonner";
 import { increaseTimeout, stopSandboxAction } from "@/app/actions";
