@@ -8,6 +8,7 @@ import {
 import { ActionResponse } from "@/types/api";
 import { logDebug, logError, logWarning } from "../logger";
 import { ResolutionScaler } from "./resolution";
+import { GEMINI_API_KEY } from "@/lib/config";
 
 const INSTRUKCJE = `
 Jesteś Surfem, pomocnym asystentem, który potrafi korzystać z komputera, aby wspierać użytkownika w jego zadaniach.  
@@ -74,8 +75,15 @@ export class GeminiComputerStreamer
     this.desktop = desktop;
     this.resolutionScaler = resolutionScaler;
     
-    // Initialize Google AI with hardcoded API key
-    this.genAI = new GoogleGenerativeAI("AIzaSyAAzKQqMXG1jJPNXdu0k_fO7PiAgntMb6k");
+    // Initialize Google AI with API key from environment
+    if (!GEMINI_API_KEY) {
+      throw new Error("GEMINI_API_KEY is not configured");
+    }
+    
+    // Ensure the API key is available in the environment for the GoogleGenerativeAI client
+    process.env.GEMINI_API_KEY = GEMINI_API_KEY;
+    
+    this.genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
     this.model = this.genAI.getGenerativeModel({ 
       model: "gemini-2.0-flash-exp",
       tools: [

@@ -4,7 +4,7 @@ import {
   ComputerInteractionStreamerFacade,
   createStreamingResponse,
 } from "@/lib/streaming";
-import { SANDBOX_TIMEOUT_MS } from "@/lib/config";
+import { SANDBOX_TIMEOUT_MS, E2B_API_KEY } from "@/lib/config";
 import { OpenAIComputerStreamer } from "@/lib/streaming/openai";
 import { GeminiComputerStreamer } from "@/lib/streaming/gemini";
 import { logError } from "@/lib/logger";
@@ -45,11 +45,14 @@ export async function POST(request: Request) {
     model = "gemini",
   } = await request.json();
 
-  const apiKey = "e2b_6f718fcb928ee85abfe16b28ebecc6724d704727";
+  const apiKey = E2B_API_KEY;
 
   if (!apiKey) {
     return new Response("E2B API key not found", { status: 500 });
   }
+
+  // Ensure E2B SDK can access the API key
+  process.env.E2B_API_KEY = apiKey;
 
   let desktop: Sandbox | undefined;
   let activeSandboxId = sandboxId;
